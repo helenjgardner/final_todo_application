@@ -1,4 +1,8 @@
 #AddButton{
-  font-size: 14px;
+  font-size: 10px;
+  margin-right: 10px;
+  background-color: navy;
+  font-weight: bold;
+  
 
 }

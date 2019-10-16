@@ -1,9 +1,13 @@
 body {
   /* background-color: rgb(201, 194, 194); */
-  background-color: honeydew;
+  background-color: rgb(250, 243, 216);
 }
 
 h2 {
+  text-align: center;
+}
+
+#totalItem{
   text-align: center;
 
 }
