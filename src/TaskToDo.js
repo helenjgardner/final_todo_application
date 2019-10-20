@@ -7,10 +7,10 @@ class TaskToDo extends React.Component {
 
             <div className="row toDo">
                 <div className="col-2">
-                    <button type="button" className="btn btn-primary" id="taskTButton">Delete</button>
+                    <button type="button" className="btn btn-danger" id="taskTButton">Delete</button>
                 </div>
                 <div className="col-2">
-                    <button type="button" className="btn btn-secondary" id="taskTButton">Mark Done</button>
+                    <button type="button" className="btn btn-secondary" id="taskTButton">Done</button>
                 </div>
                 <div className="col-8">
                     {this.props.task}

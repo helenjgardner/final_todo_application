@@ -21,13 +21,9 @@ class App extends React.Component {
             <TotalItemStatus count={3} text="Tasks Still to Complete" />
             <TotalItemStatus count={2} text="Tasks Already Done!! " />           
           </div>
-        </div>
-        <div className="container">
+
           <hr />
           <AddItem />
-          <br />
-        </div>
-        <div className="container">
           <hr />
           <h5> Tasks Still to Complete </h5>
 
@@ -35,8 +31,6 @@ class App extends React.Component {
           <TaskToDo task="Higher Order Function CodeWars" />
           <TaskToDo task="Make Website look less rubbish" />
           <br />
-        </div>
-        <div className="container">
           <h5> Tasks Already Done!!</h5>
           <TaskComplete task="School Run" />
           <TaskComplete task="Morning Coffee" />

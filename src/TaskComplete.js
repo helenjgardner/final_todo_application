@@ -7,7 +7,7 @@ class TaskComplete extends React.Component {
 
             <div className="row done">
                 <div className="col-2">
-                    <button type="button" className="btn btn-primary" id="taskCButton">Delete</button>
+                    <button type="button" className="btn btn-danger" id="taskCButton">Delete</button>
                 </div>
                 <div className="col-10">
                     {this.props.task}
