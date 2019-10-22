@@ -9,13 +9,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* would you put this as a header component? 
-             also is the single apostrophe in the h2 ok?*/}
-
-        <h2> Today's To Do List </h2>
-
+        <h2> Today's To Do List <i class="fas fa-pencil-alt"> </i> </h2>
+        
         <div className="container">
-          {/* if we start row here we can put both items on one line as it gets bigger but is it ok? */}
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={3} text="Tasks Still to Complete" />

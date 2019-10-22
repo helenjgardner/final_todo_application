@@ -5,20 +5,24 @@ class AddItem extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-1 col-sm-2">
-                    <button type="button" className="btn btn-success" id="AddButton">Add</button>
+                <div className="col-12 col-sm-9">
+                    <input
+                        id="addItemInput"
+                        type="text"
+                        className="form-control"
+                        placeholder="New task description"
+                    />
                 </div>
-
-                <div class="col-12 col-sm-10">
-                    <input type="text" className="form-control addText" aria-label="eg"
-                        aria-describedby="inputGroup-sizing-sm" placeholder="New task description"/>
+                <div className="col-12 col-sm-3">
+                    <div className="mt-3 mb-3">
+                       <button id="AddButton" className="btn btn-success" onClick={this.handleClick}>
+                          Add to list
+                       </button>
+                    </div>
                 </div>
-            </div >
-        );
-
-
-    }
-
+            </div>
+        );   
+    }  
 }
-
+        
 export default AddItem;
