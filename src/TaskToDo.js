@@ -16,7 +16,7 @@ class TaskToDo extends React.Component {
                     {this.props.task}
                 </div>
                 <div className="col-12 col-sm-3">
-                    {this.props.dateDue}
+                    Due {this.props.dateDue}
                 </div>
             </div>
 

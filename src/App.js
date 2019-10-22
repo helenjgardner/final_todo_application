@@ -20,16 +20,16 @@ class App extends React.Component {
 
           <hr />
           <AddItem />
-          <hr />
+       
           <h5> Tasks Still to Complete </h5>
 
-          <TaskToDo task="Javascript Exercises" dateDue="2019-10-26"/>
-          <TaskToDo task="Higher Order Function CodeWars" dateDue="2019-10-26"/>
-          <TaskToDo task="Make Website look less rubbish" dateDue="2019-10-26" />
+          <TaskToDo task="Javascript Exercises" dateDue="2019-10-26" completed={false}/>
+          <TaskToDo task="Higher Order Function CodeWars" dateDue="2019-10-26" completed={false}/>
+          <TaskToDo task="Make Website look less rubbish" dateDue="2019-10-26" completed={false}/>
           <br />
           <h5> Tasks Already Done!!</h5>
-          <TaskComplete task="School Run" dateDone="2019-10-22"/>
-          <TaskComplete task="Morning Coffee" dateDone="2019-10-22"/>
+          <TaskComplete task="School Run" dateDone="2019-10-22" completed={true}/>
+          <TaskComplete task="Morning Coffee" dateDone="2019-10-22" completed={true}/>
         </div>
       </div >
 

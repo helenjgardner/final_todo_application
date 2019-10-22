@@ -12,11 +12,13 @@ class TaskComplete extends React.Component {
                 <div className="col-12 col-sm-1">
                     <i class="fas fa-undo"></i>
                 </div>
-                <div className="col-12 col-sm-7">
-                    {this.props.task}
-                </div>
-                <div className="col-12 col-sm-3">
-                    {this.props.dateDone}
+
+                <div className="col-12 col-sm-7 greyItalic">
+                {this.props.task}
+                 </div>
+                
+                <div className="col-12 col-sm-3 greyItalic">
+                    Done {this.props.dateDone}
                 </div>
             </div >
 
