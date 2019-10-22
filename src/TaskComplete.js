@@ -6,15 +6,21 @@ class TaskComplete extends React.Component {
         return (
 
             <div className="row done">
-                <div className="col-2">
-                    <button type="button" className="btn btn-danger" id="taskCButton">Delete</button>
+                <div className="col-12 col-sm-1">
+                    <i class="fas fa-trash-alt"> </i>
                 </div>
-                <div className="col-10">
+                <div className="col-12 col-sm-1">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <div className="col-12 col-sm-7">
                     {this.props.task}
                 </div>
-            </div>
-            
-         );
+                <div className="col-12 col-sm-3">
+                    {this.props.dateDone}
+                </div>
+            </div >
+
+        );
 
     }
 

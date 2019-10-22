@@ -6,17 +6,20 @@ class TaskToDo extends React.Component {
         return (
 
             <div className="row toDo">
-                <div className="col-2">
-                    <button type="button" className="btn btn-danger" id="taskTButton">Delete</button>
+                <div className="col-12 col-sm-1">
+                    <i class="fas fa-trash-alt"> </i>
                 </div>
-                <div className="col-2">
-                    <button type="button" className="btn btn-secondary" id="taskTButton">Done</button>
+                <div className="col-12 col-sm-1">
+                    <i class="fas fa-clipboard-check"></i>
                 </div>
-                <div className="col-8">
+                <div className="col-12 col-sm-7">
                     {this.props.task}
                 </div>
+                <div className="col-12 col-sm-3">
+                    {this.props.dateDue}
+                </div>
             </div>
-         
+
         );
 
     }
