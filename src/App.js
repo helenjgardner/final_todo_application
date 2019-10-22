@@ -21,6 +21,9 @@ class App extends React.Component {
   }
 
   addTask = (taskText) => {
+    if (taskText===""){
+      return;
+    }
        const newTask = {
       text: taskText,
       completed: false,

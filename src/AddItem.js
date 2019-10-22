@@ -29,8 +29,9 @@ class AddItem extends React.Component {
                         <input
                             id="addItemInput"
                             type="text"
+                            maxLength="85"
                             className="form-control"
-                            placeholder="New task description"
+                            placeholder="New task description (max length 85)"
                             value={this.state.newTaskText}
                             onChange={this.updateTaskText}
                         />
