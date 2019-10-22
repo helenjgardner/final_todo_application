@@ -2,6 +2,25 @@ import React from "react";
 import "./AddItem.css";
 
 class AddItem extends React.Component {
+    state = {
+        newTaskText: ""
+    }
+
+    updateTaskText = (event) => {
+        // console.log(event.target.value);
+        this.setState({
+            newTaskText: event.target.value
+        })
+    }
+
+    handleClick = () => {
+        // check not empty though
+        this.props.addTaskFunc(this.state.newTaskText);
+        this.setState({
+            newTaskText: ""
+        })
+    }
+
     render() {
         return (
             <div className="row">
@@ -12,6 +31,8 @@ class AddItem extends React.Component {
                             type="text"
                             className="form-control"
                             placeholder="New task description"
+                            value={this.state.newTaskText}
+                            onChange={this.updateTaskText}
                         />
                     </div>
                 </div>
