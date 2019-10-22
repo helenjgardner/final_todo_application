@@ -7,10 +7,10 @@ class TaskToDo extends React.Component {
 
             <div className="row toDo">
                 <div className="col-12 col-sm-1">
-                    <i class="fas fa-trash-alt"> </i>
+                    <i className="fas fa-trash-alt"> </i>
                 </div>
                 <div className="col-12 col-sm-1">
-                    <i class="fas fa-clipboard-check"></i>
+                    <i className="fas fa-clipboard-check"></i>
                 </div>
                 <div className="col-12 col-sm-7">
                     {this.props.task}

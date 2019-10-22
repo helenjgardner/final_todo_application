@@ -7,10 +7,10 @@ class TaskComplete extends React.Component {
 
             <div className="row done">
                 <div className="col-12 col-sm-1">
-                    <i class="fas fa-trash-alt"> </i>
+                    <i className="fas fa-trash-alt"> </i>
                 </div>
                 <div className="col-12 col-sm-1">
-                    <i class="fas fa-undo"></i>
+                    <i className="fas fa-undo"></i>
                 </div>
 
                 <div className="col-12 col-sm-7 greyItalic">
