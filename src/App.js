@@ -39,12 +39,27 @@ class App extends React.Component {
   }
 
   deleteTask = (id) => {
-    
-    const tasksCopy = this.state.tasks.filter(item => {
+      const tasksCopy = this.state.tasks.filter(item => {
       return item.id !== id;
     });
     this.setState({
       tasks: tasksCopy
+    })
+  }
+
+  markTaskDone = (id) => {
+    const changeItem = this.state.tasks.filter(item => {
+      return item.id === id;
+    });
+    changeItem.completed=true;
+    console.log(changeItem);
+    const theRest = this.state.tasks.filter(item => {
+      return item.id !== id;
+    });
+    theRest.push(changeItem);
+   
+    this.setState({
+      tasks: theRest
     })
   }
  
@@ -77,7 +92,8 @@ class App extends React.Component {
               task={item.text} 
               completed={item.completed}
               dateDue={item.dateDue}
-              deleteTaskFunc={this.deleteTask} />
+              deleteTaskFunc={this.deleteTask} 
+              markDoneFunc={this.markTaskDone}/>
           })}
           <br />
           <h5> Tasks Already Done!!</h5>
