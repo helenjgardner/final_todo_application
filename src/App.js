@@ -9,12 +9,10 @@ import TaskComplete from "./TaskComplete";
 class App extends React.Component {
 
   state = {
-    tasksToDo: [
+    tasks: [
       { text: "clean driveway", completed: false, dateDue: "2019-11-30", dateDone: "", id: uuid() },
       { text: "paint landing", completed: false, dateDue: "2019-12-31", dateDone: "", id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: "2019-10-25", dateDone: "", id: uuid() }
-    ],
-    tasksDone: [
+      { text: "mend trousers", completed: false, dateDue: "2019-10-25", dateDone: "", id: uuid() },
       { text: "change dishwasher salt", completed: true, dateDue: "", dateDone: "2019-10-21", id: uuid() },
       { text: "buy crayons", completed: true, dateDue: "", dateDone: "2019-10-22", id: uuid() }
     ]
@@ -33,24 +31,28 @@ class App extends React.Component {
       id: uuid()
     };
 
-    const tasksCopy = this.state.tasksToDo.slice();
+    const tasksCopy = this.state.tasks.slice();
     tasksCopy.push(newTask);
     this.setState({
-      tasksToDo: tasksCopy
+      tasks: tasksCopy
     })
   }
 
-  deleteTaskDone = (id) => {
-    const tasksCopy = this.state.tasksDone.filter(item => {
+  deleteTask = (id) => {
+    
+    const tasksCopy = this.state.tasks.filter(item => {
       return item.id !== id;
     });
     this.setState({
-      tasksDone: tasksCopy
+      tasks: tasksCopy
     })
-
   }
-
+ 
   render() {
+    // is this valid?
+    const tasksToDo=this.state.tasks.filter( dot =>{return !dot.completed})  
+    const tasksDone=this.state.tasks.filter( dot =>{return dot.completed})  
+
     return (
       <div>
         <br />
@@ -60,28 +62,32 @@ class App extends React.Component {
         <div className="container">
           <div className="row" id="totalItem">
             <hr />
-            <TotalItemStatus count={this.state.tasksToDo.length} text="Tasks Still to Complete" />
-            <TotalItemStatus count={this.state.tasksDone.length} text="Tasks Already Done!! " />
+            <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
+            <TotalItemStatus count={tasksDone.length} text="Tasks Already Done!! " />
           </div>
 
           <hr />
           <AddItem addTaskFunc={this.addTask} />
 
           <h5> Tasks Still to Complete </h5>
-          {this.state.tasksToDo.map(item => {
-            return <TaskToDo key={item.id}
-              task={item.text} completed={item.completed}
-              dateDue={item.dateDue} />
+         
+          {tasksToDo.map(item => {
+             return <TaskToDo key={item.id}
+              id={item.id}
+              task={item.text} 
+              completed={item.completed}
+              dateDue={item.dateDue}
+              deleteTaskFunc={this.deleteTask} />
           })}
           <br />
           <h5> Tasks Already Done!!</h5>
-          {this.state.tasksDone.map(item => {
+          {tasksDone.map(item => {
             return <TaskComplete key={item.id}
               id={item.id}
               task={item.text}
               completed={item.completed}
               dateDone={item.dateDone}
-              deleteTaskDoneFunc={this.deleteTaskDone}
+              deleteTaskFunc={this.deleteTask}
             />
           })}
         </div>
