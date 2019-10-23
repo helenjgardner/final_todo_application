@@ -15,11 +15,11 @@ class TaskComplete extends React.Component {
                 <div className="col-6 col-sm-1"
                     data-div_id={this.props.id}
                     onClick={this.handleClick}> 
-                    <i className="fas fa-trash-alt"> 
+                    <i className="fas fa-trash-alt" title="Delete Task" >
                      </i>
                 </div>
                 <div className="col-6 col-sm-1">
-                    <i className="fas fa-undo"></i>
+                    <i className="fas fa-undo" title="Mark task incomplete"></i>
                 </div>
 
                 <div className="col-12 col-sm-6 greyItalic" >

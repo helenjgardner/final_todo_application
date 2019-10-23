@@ -14,11 +14,11 @@ class TaskToDo extends React.Component {
             <div className="row toDo">
                 <div className="col-6 col-sm-1" data-div_id={this.props.id}
                     onClick={this.handleClickDel}>
-                    <i className="fas fa-trash-alt"> </i>
+                    <i className="fas fa-trash-alt" title="Delete Task"> </i>
                 </div>
                 <div className="col-6 col-sm-1 green" data-div_id={this.props.id}
                     onClick={this.handleClickDone}>
-                    <i className="fas fa-clipboard-check"></i>
+                    <i className="fas fa-clipboard-check" title="Mark as Done"></i>
                 </div>
                 <div className="col-12 col-sm-6">
                  {this.props.task} 
