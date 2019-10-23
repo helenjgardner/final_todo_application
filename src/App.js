@@ -22,6 +22,7 @@ class App extends React.Component {
 
   addTask = (taskText) => {
     if (taskText===""){
+      alert ('Task cannot be blank - please try again');
       return;
     }
        const newTask = {
@@ -39,11 +40,23 @@ class App extends React.Component {
     })
   }
 
+  deleteTaskDone = () => {
+    // const pos=this.state.tasksDone.indexOf(uid);
+    // console.log(pos);
+    // just keep first item for now
+    const tasksCopy = this.state.tasksDone.slice(0,1);
+    this.setState({
+      tasksDone: tasksCopy
+    })
+
+  }
+
   render() {
     return (
       <div>
         <br />
-        <h2> Today's To Do List <i className="fas fa-pencil-alt"> </i> </h2>
+        {/* <h2> Today's ({Date()} ) To Do List <i className="fas fa-pencil-alt"> </i> </h2> */}
+        <h2> Today's To Do List</h2>
 
         <div className="container">
           <div className="row" id="totalItem">
@@ -57,12 +70,19 @@ class App extends React.Component {
 
           <h5> Tasks Still to Complete </h5>
           {this.state.tasksToDo.map(item => {
-            return <TaskToDo key={item.id} task={item.text} completed={item.completed} dateDue={item.dateDue} />
+            return <TaskToDo key={item.id} 
+                            task={item.text} completed={item.completed} 
+                             dateDue={item.dateDue} />
           })}
           <br />
           <h5> Tasks Already Done!!</h5>
           {this.state.tasksDone.map(item => {
-            return <TaskComplete key={item.id} task={item.text} completed={item.completed} dateDone={item.dateDone} />
+            return <TaskComplete key={item.id} 
+                                 task={item.text} 
+                                 completed={item.completed} 
+                                 dateDone={item.dateDone} 
+                                 deleteTaskDoneFunc={this.deleteTaskDone}
+                                 />
           })}
         </div>
         <br />
