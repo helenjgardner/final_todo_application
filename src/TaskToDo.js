@@ -6,7 +6,7 @@ class TaskToDo extends React.Component {
         this.props.deleteTaskFunc(ev.currentTarget.dataset.div_id);
     }
     handleClickDone = (ev) => {
-        this.props.markDoneFunc(ev.currentTarget.dataset.div_id);
+        this.props.toggleTaskFunc(ev.currentTarget.dataset.div_id,true);
     }
     render() {
         return (
