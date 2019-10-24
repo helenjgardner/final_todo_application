@@ -7,7 +7,7 @@ import TaskToDo from "./TaskToDo";
 import TaskComplete from "./TaskComplete";
 
 class App extends React.Component {
-
+ 
   state = {
     tasks: [
       { text: "clean driveway", completed: false, dateDue: "2019-11-30", dateDone: "", id: uuid() },
@@ -46,16 +46,23 @@ class App extends React.Component {
       tasks: tasksCopy
     })
   }
-
-  toggleTaskStatus = (id,result) => {
   
+  setDate= () => {
+    let date= new Date();
+    return date.toDateString;
+ }
+
+// clumsy - need to refactor these temp values
+  toggleTaskStatus = (id,result) => {
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
       const temp = item.completed;
-      item.id === id ? item.completed=result :item.completed=temp
+      item.id === id ? item.completed=result :item.completed=temp;
+      const tempDate=item.dateDone;
+      const now= new Date();
+      item.dateDone === '' ? item.dateDone=now.toDateString() : item.dateDone=tempDate; 
     })
-   
-    this.setState({
+      this.setState({
       tasks: tasksCopy
     })
   }
@@ -69,7 +76,7 @@ class App extends React.Component {
       <div>
         <br />
         {/* <h2> Today's ({Date()} ) To Do List <i className="fas fa-pencil-alt"> </i> </h2> */}
-        <h2> Today's To Do List</h2>
+        <h2> Today's To Do List </h2>
 
         <div className="container">
           <div className="row" id="totalItem">
