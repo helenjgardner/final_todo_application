@@ -14,7 +14,7 @@ import {
 
 
 class TaskToDo extends React.Component {
-    state = { startDate: new Date() }
+    state = { startDate: "2019-10-25"}
 
     handleClickDel = (ev) => {
         this.props.deleteTaskFunc(ev.currentTarget.dataset.div_id);
@@ -23,13 +23,14 @@ class TaskToDo extends React.Component {
         this.props.toggleTaskFunc(ev.currentTarget.dataset.div_id, true);
     }
 
-    handleChange = (date) => {
-        this.setState({ startDate: date })
+    handleChange = (event) => {
+        this.setState({ startDate: event.target.value })
+        console.log('date',this.state.startDate);
 
     }
     clickDate = (event) => {
-        // console.log(event.currentTarget.dataset.div_id);
-        this.props.setDateDueFunc(this.state.startDate);
+        // console.log(event.currentTarget.dataset.div_id,this.state.StartDate);
+        this.props.setDateDueFunc(event.currentTarget.dataset.div_id,this.state.StartDate);
     }
 
     render() {
@@ -47,8 +48,18 @@ class TaskToDo extends React.Component {
                 <div className="col-12 col-sm-4">
                     {this.props.task}
                 </div>
-                <div className="col-12 col-sm-6" onClick={this.clickDate} data-div_id={this.props.id}>
-                    
+                <div className="col-12 col-sm-3" >
+                Due
+                <input type="date" 
+                name="dateChosen"
+                value={this.state.startDate}
+                // min={this.state.startDate}
+                onChange={this.handleChange}
+                /> 
+                </div>
+                <div className="col-12 col-sm-3" onClick={this.clickDate} data-div_id={this.props.id}>
+                <i className="fas fa-calendar-day" title="set due date"></i>
+                    </div>
                   {/* <DatePicker 
                          selected={this.state.startDate}
                          onChange={this.handleChange} 
@@ -56,7 +67,7 @@ class TaskToDo extends React.Component {
                             dateFormat="yyyy-MM-dd"
                            
                          />  */}
-                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                     {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="space-around">
         
         <KeyboardDatePicker
@@ -65,6 +76,7 @@ class TaskToDo extends React.Component {
           label="Choose date due"
           format="MM/dd/yyyy"
           value={this.props.datedue !=='' ? this.props.datedue: this.state.startDate}
+          minDate={new Date()}
           onChange={this.handleChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',
@@ -73,11 +85,11 @@ class TaskToDo extends React.Component {
         
       </Grid>
     </MuiPickersUtilsProvider>
-
+ */}
 
 
             </div >
-            </div >
+            
 
                 );
 

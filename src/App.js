@@ -10,11 +10,11 @@ class App extends React.Component {
  
   state = {
     tasks: [
-      { text: "clean driveway", completed: false, dateDue: "", dateDone: "", id: uuid() },
+      { text: "clean driveway", completed: false, dateDue: "2019-10-28", dateDone: "", id: uuid() },
       { text: "paint landing", completed: false, dateDue: "2019-10-19", dateDone: "", id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: "", dateDone: "", id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: "", dateDone: "2019-10-21", id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: "", dateDone: "2019-10-22", id: uuid() }
+      { text: "mend trousers", completed: false, dateDue: "2019-10-28", dateDone: "", id: uuid() },
+      { text: "change dishwasher salt", completed: true, dateDue: "2019-10-28", dateDone: "2019-10-21", id: uuid() },
+      { text: "buy crayons", completed: true, dateDue: "2019-10-28", dateDone: "2019-10-22", id: uuid() }
     ],
       dateToday: new Date()
   }
