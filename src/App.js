@@ -5,6 +5,7 @@ import TotalItemStatus from './TotalItemStatus';
 import AddItem from "./AddItem";
 import TaskToDo from "./TaskToDo";
 import TaskComplete from "./TaskComplete";
+import moment from 'moment';
 
 class App extends React.Component {
  
@@ -38,7 +39,14 @@ class App extends React.Component {
       tasks: tasksCopy
     })
   }
+
+  displayDate=() =>{
+
+  let now =moment();
+  alert (now.unix());
+  }
    deleteTask = (id) => {
+   
       const tasksCopy = this.state.tasks.filter(item => {
       return item.id !== id;
     });
@@ -81,7 +89,7 @@ class App extends React.Component {
         {/* <h2> Today's ({Date()} ) To Do List <i className="fas fa-pencil-alt"> </i> </h2> */}
         <h2> Today's To Do List </h2>
         <h3> {this.state.dateToday.toDateString()}</h3>
-        
+        <button onClick={this.displayDate} >date </button>
         <div className="container">
           <div className="row" id="totalItem">
             <hr />

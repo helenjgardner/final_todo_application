@@ -17,6 +17,7 @@ class TaskToDo extends React.Component {
     state = { startDate: "2019-10-25"}
 
     handleClickDel = (ev) => {
+        alert(this.props.id)
         this.props.deleteTaskFunc(ev.currentTarget.dataset.div_id);
     }
     handleClickDone = (ev) => {
