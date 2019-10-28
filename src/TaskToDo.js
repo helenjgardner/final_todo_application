@@ -45,10 +45,10 @@ class TaskToDo extends React.Component {
                     onClick={this.handleClickDone}>
                     <i className="fas fa-clipboard-check" title="Mark as Done"></i>
                 </div>
-                <div className="col-12 col-sm-4">
+                <div className="col-12 col-sm-3">
                     {this.props.task}
                 </div>
-                <div className="col-12 col-sm-3" >
+                <div className="col-6 col-sm-6" >
                 Due
                 <input type="date" 
                 name="dateChosen"
@@ -57,7 +57,7 @@ class TaskToDo extends React.Component {
                 onChange={this.handleChange}
                 /> 
                 </div>
-                <div className="col-12 col-sm-3" onClick={this.clickDate} data-div_id={this.props.id}>
+                <div className="col-6 col-sm-1" onClick={this.clickDate} data-div_id={this.props.id}>
                 <i className="fas fa-calendar-day" title="set due date"></i>
                     </div>
                   {/* <DatePicker 
