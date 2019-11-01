@@ -1,5 +1,6 @@
 import React from "react";
 import "./TaskToDo.css";
+import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import 'date-fns';
@@ -53,14 +54,11 @@ class TaskToDo extends React.Component {
                 Due
                 <input type="date" 
                 name="dateChosen"
-                value={this.state.startDate}
-                // min={this.state.startDate}
+                value={this.props.dateDue}
+                min={moment().format("YYYY-MM-DD")}
                 onChange={this.handleChange}
                 /> 
                 </div>
-                <div className="col-6 col-sm-1" onClick={this.clickDate} data-div_id={this.props.id}>
-                <i className="fas fa-calendar-day" title="set due date"></i>
-                    </div>
                   {/* <DatePicker 
                          selected={this.state.startDate}
                          onChange={this.handleChange} 

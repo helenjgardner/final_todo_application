@@ -11,13 +11,13 @@ class App extends React.Component {
  
   state = {
     tasks: [
-      { text: "clean driveway", completed: false, dateDue: "2019-10-28", dateDone: "", id: uuid() },
-      { text: "paint landing", completed: false, dateDue: "2019-10-19", dateDone: "", id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: "2019-10-28", dateDone: "", id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: "2019-10-28", dateDone: "2019-10-21", id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: "2019-10-28", dateDone: "2019-10-22", id: uuid() }
+      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "2019-10-21", id: uuid() },
+      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "2019-10-22", id: uuid() }
     ],
-      dateToday: new Date()
+      dateToday: moment().format("ddd DD/MM/YYYY")
   }
 
   addTask = (taskText) => {
@@ -40,11 +40,6 @@ class App extends React.Component {
     })
   }
 
-  displayDate=() =>{
-
-  let now =moment();
-  alert (now.unix());
-  }
    deleteTask = (id) => {
    
       const tasksCopy = this.state.tasks.filter(item => {
@@ -79,17 +74,14 @@ class App extends React.Component {
   }
  
   render() {
-    // is this valid?
-    const tasksToDo=this.state.tasks.filter( dot =>{return !dot.completed})  
-    const tasksDone=this.state.tasks.filter( dot =>{return dot.completed})  
+    
+    const tasksToDo=this.state.tasks.filter( item =>{return !item.completed})  
+    const tasksDone=this.state.tasks.filter( item =>{return item.completed})  
 
     return (
       <div>
         <br />
-        {/* <h2> Today's ({Date()} ) To Do List <i className="fas fa-pencil-alt"> </i> </h2> */}
-        <h2> Today's To Do List </h2>
-        <h3> {this.state.dateToday.toDateString()}</h3>
-        <button onClick={this.displayDate} >date </button>
+        <h3> Today's ({this.state.dateToday} ) To Do List <i className="fas fa-pencil-alt"> </i> </h3>
         <div className="container">
           <div className="row" id="totalItem">
             <hr />
