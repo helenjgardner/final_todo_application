@@ -22,19 +22,14 @@ class TaskToDo extends React.Component {
         this.props.deleteTaskFunc(ev.currentTarget.dataset.div_id);
     }
     handleClickDone = (ev) => {
+        // done = true since task was not done and now is
         this.props.toggleTaskFunc(ev.currentTarget.dataset.div_id, true);
     }
 
-    handleChange = (event) => {
-        this.setState({ startDate: event.target.value })
-        console.log('date',this.state.startDate);
+    handleDateChange = (event) => {
+        this.props.setDateDueFunc(this.props.id,event.target.value);
 
     }
-    clickDate = (event) => {
-        // console.log(event.currentTarget.dataset.div_id,this.state.StartDate);
-        this.props.setDateDueFunc(event.currentTarget.dataset.div_id,this.state.StartDate);
-    }
-
     render() {
         return (
 
@@ -56,7 +51,7 @@ class TaskToDo extends React.Component {
                 name="dateChosen"
                 value={this.props.dateDue}
                 min={moment().format("YYYY-MM-DD")}
-                onChange={this.handleChange}
+                onChange={this.handleDateChange}
                 /> 
                 </div>
                   {/* <DatePicker 

@@ -14,8 +14,8 @@ class App extends React.Component {
       { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
       { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
       { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "2019-10-21", id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "2019-10-22", id: uuid() }
+      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "21/10/2019", id: uuid() },
+      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "12/10/2019", id: uuid() }
     ],
       dateToday: moment().format("ddd DD/MM/YYYY")
   }
@@ -28,7 +28,7 @@ class App extends React.Component {
     const newTask = {
       text: taskText,
       completed: false,
-      dateDue: "2019-10-21",
+      dateDue: moment().format("YYYY-MM-DD"),
       dateDone: "",
       id: uuid()
     };
@@ -51,19 +51,22 @@ class App extends React.Component {
   }
 
   toggleTaskStatus = (id,result) => {
+    // if result is true then dealing with task changing from 'not done' to 'done'
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
-      if (item.id === id) {item.completed=result}; 
-      //  below is changing all items
-      if (item.dateDone === ''){item.dateDone=new Date().toDateString()};
+      if (item.id === id) {
+        // completed can be set to result
+          item.completed=result;
+          // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
+          result ? item.dateDone=moment().format("DD/MM/YYYY") : item.dateDone=''
+       }
     })
-      this.setState({
-      tasks: tasksCopy
+    this.setState({
+       tasks: tasksCopy
     })
   }
 
   setDateDue = (id, date) => {
-    console.log(id, date);
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
       if (item.id === id) {item.dateDue=date}; 
