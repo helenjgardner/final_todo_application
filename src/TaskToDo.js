@@ -18,34 +18,36 @@ class TaskToDo extends React.Component {
     state = { startDate: "2019-10-25"}
 
     handleClickDel = (ev) => {
-        alert(this.props.id)
-        this.props.deleteTaskFunc(ev.currentTarget.dataset.div_id);
+        this.props.deleteTaskFunc(this.props.id);
     }
     handleClickDone = (ev) => {
         // done = true since task was not done and now is
-        this.props.toggleTaskFunc(ev.currentTarget.dataset.div_id, true);
+        this.props.toggleTaskFunc(this.props.id, true);
     }
 
     handleDateChange = (event) => {
         this.props.setDateDueFunc(this.props.id,event.target.value);
-
     }
     render() {
         return (
 
             <div className="row toDo">
-                <div className="col-6 col-sm-1" data-div_id={this.props.id}
-                    onClick={this.handleClickDel}>
-                    <i className="fas fa-trash-alt" title="Delete Task"> </i>
+                <div className="col-6 col-sm-1">
+                    <i className="fas fa-trash-alt" 
+                       title="Delete Task"
+                       onClick={this.handleClickDel}> 
+                    </i>
                 </div>
-                <div className="col-6 col-sm-1 green" data-div_id={this.props.id}
-                    onClick={this.handleClickDone}>
-                    <i className="fas fa-clipboard-check" title="Mark as Done"></i>
+                <div className="col-6 col-sm-1 green">
+                    <i className="fas fa-clipboard-check" 
+                        title="Mark as Done"
+                        onClick={this.handleClickDone} >    
+                    </i>
                 </div>
-                <div className="col-12 col-sm-3">
+                <div className="col-12 col-sm-6">
                     {this.props.task}
                 </div>
-                <div className="col-6 col-sm-6" >
+                <div className="col-6 col-sm-4" >
                 Due
                 <input type="date" 
                 name="dateChosen"

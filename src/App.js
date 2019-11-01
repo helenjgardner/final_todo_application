@@ -14,8 +14,8 @@ class App extends React.Component {
       { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
       { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
       { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "21/10/2019", id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: "12/10/2019", id: uuid() }
+      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/12/2019").format("DD/MM/YYYY"), id: uuid() },
+      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("09/01/2019").format("DD/MM/YYYY"), id: uuid() }
     ],
       dateToday: moment().format("ddd DD/MM/YYYY")
   }
