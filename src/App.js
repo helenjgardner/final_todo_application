@@ -8,16 +8,16 @@ import TaskComplete from "./TaskComplete";
 import moment from 'moment';
 
 class App extends React.Component {
- 
+
   state = {
     tasks: [
-      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/13/2019").format("DD/MM/YYYY"), id: uuid() },
+      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/01/2019").format("DD/MM/YYYY"), id: uuid() },
+      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/12/2019").format("DD/MM/YYYY"), id: uuid() },
       { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/12/2019").format("DD/MM/YYYY"), id: uuid() },
       { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("09/01/2019").format("DD/MM/YYYY"), id: uuid() }
     ],
-      dateToday: moment().format("ddd DD/MM/YYYY")
+    dateToday: moment().format("ddd DD/MM/YYYY")
   }
 
   addTask = (taskText) => {
@@ -40,9 +40,9 @@ class App extends React.Component {
     })
   }
 
-   deleteTask = (id) => {
-   
-      const tasksCopy = this.state.tasks.filter(item => {
+  deleteTask = (id) => {
+
+    const tasksCopy = this.state.tasks.filter(item => {
       return item.id !== id;
     });
     this.setState({
@@ -50,40 +50,48 @@ class App extends React.Component {
     })
   }
 
-  toggleTaskStatus = (id,result) => {
+  toggleTaskStatus = (id, result) => {
     // if result is true then dealing with task changing from 'not done' to 'done'
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
       if (item.id === id) {
         // completed can be set to result
-          item.completed=result;
-          // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
-          result ? item.dateDone=moment().format("DD/MM/YYYY") : item.dateDone=''
-       }
+        item.completed = result;
+        // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
+        result ? item.dateDone = moment().format("DD/MM/YYYY") : item.dateDone = ''
+      }
     })
     this.setState({
-       tasks: tasksCopy
+      tasks: tasksCopy
     })
   }
 
   setDateDue = (id, date) => {
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
-      if (item.id === id) {item.dateDue=date}; 
+      if (item.id === id) { item.dateDue = date };
     })
-      this.setState({
+    this.setState({
       tasks: tasksCopy
     })
   }
- 
-  render() {
+
+  sort = () => {
+    const tasksCopy = this.state.tasks;
+    tasksCopy.sort(function(a, b){return a.dateDone - b.DateDone})
     
-    const tasksToDo=this.state.tasks.filter( item =>{return !item.completed})  
-    const tasksDone=this.state.tasks.filter( item =>{return item.completed})  
+    alert(tasksCopy[0].dateDone,tasksCopy[1].dateDone);
+  }
+
+  render() {
+
+    const tasksToDo = this.state.tasks.filter(item => { return !item.completed })
+    const tasksDone = this.state.tasks.filter(item => { return item.completed })
 
     return (
       <div>
         <br />
+        <button onClick={this.sort}>Sort date </button>
         <h3> Today's ({this.state.dateToday} ) To Do List <i className="fas fa-pencil-alt"> </i> </h3>
         <div className="container">
           <div className="row" id="totalItem">
@@ -96,16 +104,16 @@ class App extends React.Component {
           <AddItem addTaskFunc={this.addTask} />
 
           <h5> Tasks Still to Complete </h5>
-         
+
           {tasksToDo.map(item => {
-             return <TaskToDo key={item.id}
+            return <TaskToDo key={item.id}
               id={item.id}
-              task={item.text} 
+              task={item.text}
               completed={item.completed}
               dateDue={item.dateDue}
-              deleteTaskFunc={this.deleteTask} 
+              deleteTaskFunc={this.deleteTask}
               toggleTaskFunc={this.toggleTaskStatus}
-              setDateDueFunc={this.setDateDue}/>
+              setDateDueFunc={this.setDateDue} />
           })}
           <br />
           <h5> Tasks Already Done!!</h5>
