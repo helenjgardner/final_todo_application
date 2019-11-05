@@ -57,7 +57,12 @@ class App extends React.Component {
         // completed can be set to result
         item.completed = result;
         // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
-        result ? item.dateDone = moment().format("DD/MM/YYYY") : item.dateDone = ''
+        if (result) { 
+          item.dateDone = moment();
+        }
+        else {
+          item.dateDone = '';
+          item.dateDue=moment().format("YYYY-MM-DD");};
       }
     })
     this.setState({
@@ -74,10 +79,10 @@ class App extends React.Component {
       tasks: tasksCopy
     })
   }
-  
-  sortByDate = () => {
+
+  sortByDate = (sortDate) => {
     const tasksCopy = this.state.tasks.slice();
-    tasksCopy.sort(function (a, b) { return moment(a.dateDone).format('YYYYMMDD') - moment(b.dateDone).format('YYYYMMDD') });
+    tasksCopy.sort(function (a, b) { return moment(a.sortDate).format('YYYYMMDD') - moment(b.sortDate).format('YYYYMMDD') });
     this.setState({
       tasks: tasksCopy
     })
