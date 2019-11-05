@@ -41,8 +41,8 @@ class TaskToDo extends React.Component {
                         onClick={this.handleClickDel}>
                     </i>
                 </div>
-                <div className="col-3 col-sm-1 green">
-                    <i className="fas fa-clipboard-check"
+                <div className="col-3 col-sm-1 ">
+                    <i className="fas fa-clipboard-check green" 
                         title="Mark as Done"
                         onClick={this.handleClickDone} >
                     </i>

@@ -99,14 +99,6 @@ class App extends React.Component {
     })
   }
 
-  sortByDate = (sortDate) => {
-    const tasksCopy = this.state.tasks.slice();
-    tasksCopy.sort(function (a, b) { return moment(a.sortDate).format('YYYYMMDD') - moment(b.sortDate).format('YYYYMMDD') });
-    this.setState({
-      tasks: tasksCopy
-    })
-  }
-
   // called to edit an incomplete task - user cannot edit a done task
   editTask = (id, newText) => {
     const tasksCopy = this.state.tasks.slice();
@@ -120,9 +112,13 @@ class App extends React.Component {
 
   render() {
 
-    // split tasks into done and not done
+    // split tasks into done and not done and sort them
     const tasksToDo = this.state.tasks.filter(item => { return !item.completed })
+    tasksToDo.sort(function (a, b) 
+      { return moment(a.dateDue).format('YYYYMMDD') - moment(b.dateDue).format('YYYYMMDD') })
     const tasksDone = this.state.tasks.filter(item => { return item.completed })
+    tasksDone.sort(function (a, b) 
+      { return moment(a.dateDone).format('YYYYMMDD') - moment(b.dateDone).format('YYYYMMDD') })
 
     return (
       <div>
@@ -137,19 +133,19 @@ class App extends React.Component {
 
           <hr />
           <AddItem addTaskFunc={this.addTask} />
-
-          <h5> Tasks Still to Complete </h5>
-          {tasksToDo.map(item => {
-            return <TaskToDo key={item.id}
-              id={item.id}
-              task={item.text}
-              completed={item.completed}
-              dateDue={item.dateDue}
-              deleteTaskFunc={this.deleteTask}
-              toggleTaskFunc={this.toggleTaskStatus}
-              setDateDueFunc={this.setDateDue}
-              editTaskFunc={this.editTask} />
-          })}
+            <h5> Tasks Still to Complete </h5>
+            {tasksToDo.map(item => {
+              return <TaskToDo key={item.id}
+                id={item.id}
+                task={item.text}
+                completed={item.completed}
+                dateDue={item.dateDue}
+                deleteTaskFunc={this.deleteTask}
+                toggleTaskFunc={this.toggleTaskStatus}
+                setDateDueFunc={this.setDateDue}
+                editTaskFunc={this.editTask} />
+            })}
+        
           <br />
           <h5> Tasks Already Done!!</h5>
           {tasksDone.map(item => {
