@@ -1,5 +1,6 @@
 import React from "react";
 import "./TaskComplete.css";
+import moment from 'moment';
 
 
 class TaskComplete extends React.Component {
@@ -30,7 +31,8 @@ class TaskComplete extends React.Component {
                  </div>
                 
                 <div className="col-12 col-sm-4 greyItalic">
-                    Done {this.props.dateDone}
+                    {/* Done {this.props.dateDone} */}
+                    Done {moment(this.props.dateDone, "YYYY-MM-DD").format("DD/MM/YYYY")}
                 </div>
             </div >
 

@@ -11,13 +11,12 @@ class App extends React.Component {
 
   state = {
     tasks: [
-      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/13/2019").format("DD/MM/YYYY"), id: uuid() },
-      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/01/2019").format("DD/MM/YYYY"), id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/12/2019").format("DD/MM/YYYY"), id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("10/12/2019").format("DD/MM/YYYY"), id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: moment().format("YYYY-MM-DD"), dateDone: moment("09/01/2019").format("DD/MM/YYYY"), id: uuid() }
-    ],
-    dateToday: moment().format("ddd DD/MM/YYYY")
+      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
+      { text: "change dishwasher salt", completed: true, dateDue: "", dateDone: "2019-10-12", id: uuid() },
+      { text: "buy crayons", completed: true, dateDue: "", dateDone: "2019-09-01", id: uuid() }
+    ]
   }
 
   addTask = (taskText) => {
@@ -75,12 +74,13 @@ class App extends React.Component {
       tasks: tasksCopy
     })
   }
-
-  sort = () => {
-    const tasksCopy = this.state.tasks;
-    tasksCopy.sort(function(a, b){return a.dateDone - b.DateDone})
-    
-    alert(tasksCopy[0].dateDone,tasksCopy[1].dateDone);
+  
+  sortByDate = () => {
+    const tasksCopy = this.state.tasks.slice();
+    tasksCopy.sort(function (a, b) { return moment(a.dateDone).format('YYYYMMDD') - moment(b.dateDone).format('YYYYMMDD') });
+    this.setState({
+      tasks: tasksCopy
+    })
   }
 
   render() {
@@ -91,8 +91,7 @@ class App extends React.Component {
     return (
       <div>
         <br />
-        <button onClick={this.sort}>Sort date </button>
-        <h3> Today's ({this.state.dateToday} ) To Do List <i className="fas fa-pencil-alt"> </i> </h3>
+        <h3> Today's ({moment().format("dddd Do MMM")}) To Do List <i className="fas fa-pencil-alt"> </i> </h3>
         <div className="container">
           <div className="row" id="totalItem">
             <hr />
@@ -104,9 +103,8 @@ class App extends React.Component {
           <AddItem addTaskFunc={this.addTask} />
 
           <h5> Tasks Still to Complete </h5>
-
-          {tasksToDo.map(item => {
-            return <TaskToDo key={item.id}
+            {tasksToDo.map(item => {
+              return <TaskToDo key={item.id}
               id={item.id}
               task={item.text}
               completed={item.completed}
