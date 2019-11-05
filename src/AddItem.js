@@ -7,14 +7,12 @@ class AddItem extends React.Component {
     }
 
     updateTaskText = (event) => {
-        // console.log(event.target.value);
         this.setState({
             newTaskText: event.target.value
         })
     }
 
     handleClick = () => {
-        // check not empty though
         this.props.addTaskFunc(this.state.newTaskText);
         this.setState({
             newTaskText: ""

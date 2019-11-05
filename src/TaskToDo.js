@@ -13,10 +13,12 @@ import {
 
 class TaskToDo extends React.Component {
     handleClickDel = (ev) => {
-        this.props.deleteTaskFunc(this.props.id);
+        if (window.confirm('Are you sure you want to delete?')) {
+            this.props.deleteTaskFunc(this.props.id);
+        }
     }
 
-    handleClickDone = (ev) => {
+    handleClickDone = () => {
         // done = true since task was not done and now is
         this.props.toggleTaskFunc(this.props.id, true);
     }
@@ -26,8 +28,8 @@ class TaskToDo extends React.Component {
     }
 
     handleClickEdit = () => {
-        var newText=prompt('Update task details',this.props.task);
-        this.props.editTaskFunc(this.props.id,newText)
+        var newText = prompt('Update task details', this.props.task);
+        this.props.editTaskFunc(this.props.id, newText)
     }
 
     render() {

@@ -11,14 +11,30 @@ class App extends React.Component {
 
   state = {
     tasks: [
-      { text: "clean driveway", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "paint landing", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "mend trousers", completed: false, dateDue: moment().format("YYYY-MM-DD"), dateDone: "", id: uuid() },
-      { text: "change dishwasher salt", completed: true, dateDue: "", dateDone: "2019-10-12", id: uuid() },
-      { text: "buy crayons", completed: true, dateDue: "", dateDone: "2019-09-01", id: uuid() }
+      {
+        text: "clean driveway", completed: false,
+        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+      },
+      {
+        text: "paint landing", completed: false,
+        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+      },
+      {
+        text: "mend trousers", completed: false,
+        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+      },
+      {
+        text: "change dishwasher salt", completed: true,
+        dateDue: "", dateDone: "2019-10-12", id: uuid()
+      },
+      {
+        text: "buy crayons", completed: true,
+        dateDue: "", dateDone: "2019-09-01", id: uuid()
+      }
     ]
   }
 
+  // called when user selects 'add task' - user then updates date due.  Defaulted to a week
   addTask = (taskText) => {
     if (taskText === "") {
       alert('Task cannot be blank - please try again');
@@ -27,7 +43,7 @@ class App extends React.Component {
     const newTask = {
       text: taskText,
       completed: false,
-      dateDue: moment().format("YYYY-MM-DD"),
+      dateDue: moment().add(7, 'days').format("YYYY-MM-DD"),
       dateDone: "",
       id: uuid()
     };
@@ -39,8 +55,8 @@ class App extends React.Component {
     })
   }
 
+  // called to delete task whether task is done or not
   deleteTask = (id) => {
-
     const tasksCopy = this.state.tasks.filter(item => {
       return item.id !== id;
     });
@@ -49,6 +65,7 @@ class App extends React.Component {
     })
   }
 
+  // called to mark as task as done or a complete task as not done
   toggleTaskStatus = (id, result) => {
     // if result is true then dealing with task changing from 'not done' to 'done'
     const tasksCopy = this.state.tasks.slice();
@@ -57,12 +74,13 @@ class App extends React.Component {
         // completed can be set to result
         item.completed = result;
         // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
-        if (result) { 
+        if (result) {
           item.dateDone = moment();
         }
         else {
           item.dateDone = '';
-          item.dateDue=moment().format("YYYY-MM-DD");};
+          item.dateDue = moment().add(7, 'days').format("YYYY-MM-DD");
+        };
       }
     })
     this.setState({
@@ -70,6 +88,7 @@ class App extends React.Component {
     })
   }
 
+  // called to set due date
   setDateDue = (id, date) => {
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
@@ -88,6 +107,7 @@ class App extends React.Component {
     })
   }
 
+  // called to edit an incomplete task - user cannot edit a done task
   editTask = (id, newText) => {
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
@@ -100,6 +120,7 @@ class App extends React.Component {
 
   render() {
 
+    // split tasks into done and not done
     const tasksToDo = this.state.tasks.filter(item => { return !item.completed })
     const tasksDone = this.state.tasks.filter(item => { return item.completed })
 
@@ -118,8 +139,8 @@ class App extends React.Component {
           <AddItem addTaskFunc={this.addTask} />
 
           <h5> Tasks Still to Complete </h5>
-            {tasksToDo.map(item => {
-              return <TaskToDo key={item.id}
+          {tasksToDo.map(item => {
+            return <TaskToDo key={item.id}
               id={item.id}
               task={item.text}
               completed={item.completed}
@@ -144,13 +165,8 @@ class App extends React.Component {
         </div>
         <br />
       </div>
-
-
     );
-
-
   }
-
 }
 
 export default App;
