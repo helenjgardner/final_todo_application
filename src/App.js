@@ -88,6 +88,16 @@ class App extends React.Component {
     })
   }
 
+  editTask = (id, newText) => {
+    const tasksCopy = this.state.tasks.slice();
+    tasksCopy.forEach(item => {
+      if (item.id === id) { item.text = newText };
+    })
+    this.setState({
+      tasks: tasksCopy
+    })
+  }
+
   render() {
 
     const tasksToDo = this.state.tasks.filter(item => { return !item.completed })
@@ -96,7 +106,7 @@ class App extends React.Component {
     return (
       <div>
         <br />
-        <h3> Today's ({moment().format("dddd Do MMM")}) To Do List <i className="fas fa-pencil-alt"> </i> </h3>
+        <h3> Today's ({moment().format("dddd Do MMM")}) To Do List </h3>
         <div className="container">
           <div className="row" id="totalItem">
             <hr />
@@ -116,7 +126,8 @@ class App extends React.Component {
               dateDue={item.dateDue}
               deleteTaskFunc={this.deleteTask}
               toggleTaskFunc={this.toggleTaskStatus}
-              setDateDueFunc={this.setDateDue} />
+              setDateDueFunc={this.setDateDue}
+              editTaskFunc={this.editTask} />
           })}
           <br />
           <h5> Tasks Already Done!!</h5>

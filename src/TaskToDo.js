@@ -25,27 +25,38 @@ class TaskToDo extends React.Component {
         this.props.setDateDueFunc(this.props.id, date);
     }
 
+    handleClickEdit = () => {
+        var newText=prompt('Update task details',this.props.task);
+        this.props.editTaskFunc(this.props.id,newText)
+    }
+
     render() {
         return (
             <div className="row toDo">
-                <div className="col-6 col-sm-1">
+                <div className="col-3 col-sm-1">
                     <i className="fas fa-trash-alt"
                         title="Delete Task"
                         onClick={this.handleClickDel}>
                     </i>
                 </div>
-                <div className="col-6 col-sm-1 green">
+                <div className="col-3 col-sm-1 green">
                     <i className="fas fa-clipboard-check"
                         title="Mark as Done"
                         onClick={this.handleClickDone} >
                     </i>
                 </div>
-                <div className="col-12 col-sm-6">
+                <div className="col-3 col-sm-1">
+                    <i className="fas fa-pencil-alt"
+                        title="Edit"
+                        onClick={this.handleClickEdit} >
+                    </i>
+                </div>
+                <div className="col-12 col-sm-5">
                     {this.props.task}
                 </div>
-                <div className="col-6 col-sm-4" >
+                <div className="col-12 col-sm-4" >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around">
+                        <Grid container justify="space-around" alignItems="center">
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="date-picker-dialog"
