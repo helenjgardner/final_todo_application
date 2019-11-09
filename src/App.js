@@ -17,11 +17,11 @@ class App extends React.Component {
       },
       {
         text: "paint landing", completed: false,
-        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+        dateDue: moment().add(2, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
       },
       {
         text: "mend trousers", completed: false,
-        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+        dateDue: moment().add(3, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
       },
       {
         text: "change dishwasher salt", completed: true,
@@ -30,6 +30,10 @@ class App extends React.Component {
       {
         text: "buy crayons", completed: true,
         dateDue: "", dateDone: "2019-09-01", id: uuid()
+      },
+      {
+        text: "a really, really, long task to display", completed: false,
+        dateDue: moment().add(8, 'days').format("YYYY-MM-DD"), dateDone: "2019-09-01", id: uuid()
       }
     ]
   }
@@ -101,6 +105,10 @@ class App extends React.Component {
 
   // called to edit an incomplete task - user cannot edit a done task
   editTask = (id, newText) => {
+    if (newText === "") {
+      alert('Task cannot be blank - please try again');
+      return;
+    }
     const tasksCopy = this.state.tasks.slice();
     tasksCopy.forEach(item => {
       if (item.id === id) { item.text = newText };
@@ -123,8 +131,8 @@ class App extends React.Component {
     return (
       <div>
         <br />
-        <h3> Today's ({moment().format("dddd Do MMM")}) To Do List </h3>
-        <div className="container">
+        <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
+        <div className="container-fluid">
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />

@@ -35,34 +35,30 @@ class TaskToDo extends React.Component {
     render() {
         return (
             <div className="row toDo">
-                <div className="col-3 col-sm-1">
-                    <i className="fas fa-trash-alt"
+                <div className="col-4 col-sm-3">
+                    <i className="fas fa-trash-alt pad"
                         title="Delete Task"
                         onClick={this.handleClickDel}>
                     </i>
-                </div>
-                <div className="col-3 col-sm-1 ">
-                    <i className="fas fa-clipboard-check green" 
+                    <i className="fas fa-clipboard-check green pad" 
                         title="Mark as Done"
                         onClick={this.handleClickDone} >
                     </i>
-                </div>
-                <div className="col-3 col-sm-1">
                     <i className="fas fa-pencil-alt"
                         title="Edit"
                         onClick={this.handleClickEdit} >
                     </i>
                 </div>
-                <div className="col-12 col-sm-5">
+                <div className="col-8 col-sm-5">
                     {this.props.task}
                 </div>
                 <div className="col-12 col-sm-4" >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around" alignItems="center">
+                        <Grid container>
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="date-picker-dialog"
-                                label="Choose date due"
+                                label="Date due"
                                 format="dd/MM/yyyy"
                                 value={this.props.dateDue}
                                 minDate={moment()}
