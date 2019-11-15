@@ -122,27 +122,34 @@ class App extends React.Component {
 
     // split tasks into done and not done and sort them
     const tasksToDo = this.state.tasks.filter(item => { return !item.completed })
-    tasksToDo.sort(function (a, b) 
-      { return moment(a.dateDue).format('YYYYMMDD') - moment(b.dateDue).format('YYYYMMDD') })
+    tasksToDo.sort(function (a, b) { return moment(a.dateDue).format('YYYYMMDD') - moment(b.dateDue).format('YYYYMMDD') })
     const tasksDone = this.state.tasks.filter(item => { return item.completed })
-    tasksDone.sort(function (a, b) 
-      { return moment(a.dateDone).format('YYYYMMDD') - moment(b.dateDone).format('YYYYMMDD') })
+    tasksDone.sort(function (a, b) { return moment(a.dateDone).format('YYYYMMDD') - moment(b.dateDone).format('YYYYMMDD') })
 
     return (
       <div>
         <br />
         <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
             <TotalItemStatus count={tasksDone.length} text="Tasks Already Done!! " />
           </div>
 
+          <div className="row">
+          <div className="col-12">
           <hr />
           <AddItem addTaskFunc={this.addTask} />
-            <h5> Tasks Still to Complete </h5>
-            {tasksToDo.map(item => {
+          </div>
+          </div>
+          <div className="row">
+          <div className="col-12 col-lg-6" >
+            <div className="col-12">
+             <div className="row" >
+             <h5> Tasks Still to Complete </h5>
+             </div>
+             {tasksToDo.map(item => {
               return <TaskToDo key={item.id}
                 id={item.id}
                 task={item.text}
@@ -153,21 +160,28 @@ class App extends React.Component {
                 setDateDueFunc={this.setDateDue}
                 editTaskFunc={this.editTask} />
             })}
-        
-          <br />
-          <h5> Tasks Already Done!!</h5>
-          {tasksDone.map(item => {
-            return <TaskComplete key={item.id}
-              id={item.id}
-              task={item.text}
-              completed={item.completed}
-              dateDone={item.dateDone}
-              deleteTaskFunc={this.deleteTask}
-              toggleTaskFunc={this.toggleTaskStatus}
-            />
-          })}
+          </div>
+          </div>
+          <div className="col-12 col-lg-6">
+          <div className="col-12">
+          <div className="row" >
+            <h5> Tasks Already Done!!</h5>
+            </div>
+            {tasksDone.map(item => {
+              return <TaskComplete key={item.id}
+                id={item.id}
+                task={item.text}
+                completed={item.completed}
+                dateDone={item.dateDone}
+                deleteTaskFunc={this.deleteTask}
+                toggleTaskFunc={this.toggleTaskStatus}
+              />
+            })}
+          </div>
+        </div>
         </div>
         <br />
+      </div>
       </div>
     );
   }

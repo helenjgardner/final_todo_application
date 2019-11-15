@@ -38,13 +38,13 @@ The application will then be accessible at:
 
 Use the input box to add a new incomplete task. Once the task has been added the following actions are available to you:
 
-Delete (user will be prompted)
-Edit task details
-Mark a task as done
-Set or update due date
+- Delete (user will be prompted)
+- Edit task details
+- Mark a task as done
+- Set or update due date
 
 Tasks are sorted by ascending due date.
 
 Once a task has been completed it is displayed on the lower panel and the following actions are available
-Delete (user will be prompted)
-Undo completion i.e. make the task not complete
+- Delete (user will be prompted)
+- Undo completion i.e. make the task not complete
