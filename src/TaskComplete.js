@@ -25,7 +25,7 @@ class TaskComplete extends React.Component {
                     title="Mark task incomplete"></i>
                 </div>
 
-                <div className="col-9 col-sm-5 col-md-6 greyItalic middle" >
+                <div className="col-9 col-sm-5 col-md-6 greyItalic" >
                     {this.props.task}
                 </div>
 

@@ -138,50 +138,50 @@ class App extends React.Component {
           </div>
 
           <div className="row">
-          <div className="col-12">
-          <hr />
-          <AddItem addTaskFunc={this.addTask} />
-          </div>
+            <div className="col-12">
+              <hr />
+              <AddItem addTaskFunc={this.addTask} />
+            </div>
           </div>
           <div className="row">
-          <div className="col-12 col-lg-6" >
-            <div className="col-12">
-             <div className="row" >
-             <h5> Tasks Still to Complete </h5>
-             </div>
-             {tasksToDo.map(item => {
-              return <TaskToDo key={item.id}
-                id={item.id}
-                task={item.text}
-                completed={item.completed}
-                dateDue={item.dateDue}
-                deleteTaskFunc={this.deleteTask}
-                toggleTaskFunc={this.toggleTaskStatus}
-                setDateDueFunc={this.setDateDue}
-                editTaskFunc={this.editTask} />
-            })}
-          </div>
-          </div>
-          <div className="col-12 col-lg-6">
-          <div className="col-12">
-          <div className="row" >
-            <h5> Tasks Already Done!!</h5>
+            <div className="col-12 col-lg-6" >
+              <div className="col-12">
+                <div className="row" >
+                  <h5> Tasks Still to Complete </h5>
+                </div>
+                {tasksToDo.map(item => {
+                  return <TaskToDo key={item.id}
+                    id={item.id}
+                    task={item.text}
+                    completed={item.completed}
+                    dateDue={item.dateDue}
+                    deleteTaskFunc={this.deleteTask}
+                    toggleTaskFunc={this.toggleTaskStatus}
+                    setDateDueFunc={this.setDateDue}
+                    editTaskFunc={this.editTask} />
+                })}
+              </div>
             </div>
-            {tasksDone.map(item => {
-              return <TaskComplete key={item.id}
-                id={item.id}
-                task={item.text}
-                completed={item.completed}
-                dateDone={item.dateDone}
-                deleteTaskFunc={this.deleteTask}
-                toggleTaskFunc={this.toggleTaskStatus}
-              />
-            })}
+            <div className="col-12 col-lg-6">
+              <div className="col-12">
+                <div className="row" >
+                  <h5> Tasks Already Done!!</h5>
+                </div>
+                {tasksDone.map(item => {
+                  return <TaskComplete key={item.id}
+                    id={item.id}
+                    task={item.text}
+                    completed={item.completed}
+                    dateDone={item.dateDone}
+                    deleteTaskFunc={this.deleteTask}
+                    toggleTaskFunc={this.toggleTaskStatus}
+                  />
+                })}
+              </div>
+            </div>
           </div>
+          <br />
         </div>
-        </div>
-        <br />
-      </div>
       </div>
     );
   }
