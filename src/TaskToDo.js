@@ -35,7 +35,7 @@ class TaskToDo extends React.Component {
     render() {
         return (
             <div className="row toDo">
-                <div className="col-4 col-sm-3">
+                <div className="col-4 col-sm-3 col-md-2 left">
                     <i className="fas fa-trash-alt pad"
                         title="Delete Task"
                         onClick={this.handleClickDel}>
@@ -49,10 +49,10 @@ class TaskToDo extends React.Component {
                         onClick={this.handleClickEdit} >
                     </i>
                 </div>
-                <div className="col-8 col-sm-5">
+                <div className="col-7 col-sm-5 col-md-6 middle">
                     {this.props.task}
                 </div>
-                <div className="col-12 col-sm-4" >
+                <div className="col-12 col-sm-4 col-md-4 left" >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container>
                             <KeyboardDatePicker

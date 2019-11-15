@@ -18,18 +18,18 @@ class TaskComplete extends React.Component {
         return (
 
             <div className="row done">
-                <div className="col-12 col-sm-3">
+                <div className="col-3 col-sm-3 col-md-2">
                     <i className="fas fa-trash-alt pad" title="Delete Task" onClick={this.handleClick} >
                     </i>
                     <i className="fas fa-undo" onClick={this.handleClickUnDone}
                     title="Mark task incomplete"></i>
                 </div>
 
-                <div className="col-12 col-sm-5 greyItalic" >
+                <div className="col-9 col-sm-5 col-md-6 greyItalic middle" >
                     {this.props.task}
                 </div>
 
-                <div className="col-12 col-sm-4 greyItalic">
+                <div className="col-12 col-sm-4 col-md-4 greyItalic">
                     Done {moment(this.props.dateDone, "YYYY-MM-DD").format("DD/MM/YYYY")}
                 </div>
             </div >
