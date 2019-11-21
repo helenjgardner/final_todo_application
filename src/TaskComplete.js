@@ -17,11 +17,11 @@ class TaskComplete extends React.Component {
     render() {
         return (
 
-            <div className="row done">
+            <div className="row done rounded align-items-center">
                 <div className="col-3 col-sm-3 col-md-2">
                     <i className="fas fa-trash-alt pad" title="Delete Task" onClick={this.handleClick} >
                     </i>
-                    <i className="fas fa-undo" onClick={this.handleClickUnDone}
+                    <i className="fas fa-undo blue" onClick={this.handleClickUnDone}
                     title="Mark task incomplete"></i>
                 </div>
 

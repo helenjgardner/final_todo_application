@@ -6,8 +6,8 @@
 
 .done {
   background-color: rgb(247, 242, 242);
-  /* border: 1px solid rgb(207, 198, 198); */
-  border: 1px solid rgb(159, 148, 199);
+  border: 1px solid rgb(207, 198, 198);
+  /* border: 1px solid rgb(162, 185, 238); */
   padding-top: 5px;
   padding-bottom: 5px;
 }

@@ -1,13 +1,12 @@
 h2, h3, h4 {
   text-align: center;
+  /* color: rgb(99, 140, 236); */
+  color: navy;
 }
-h4
-{
-  background-color: rgb(195, 192, 206);
-}
+
 
 #totalItem{
   text-align: center;
-  
+  /* background-color: rgb(195, 192, 206); */
 }
 

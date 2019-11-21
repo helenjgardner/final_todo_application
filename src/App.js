@@ -135,7 +135,7 @@ class App extends React.Component {
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
-            <TotalItemStatus count={tasksDone.length} text="Tasks Already Done!! " />
+            <TotalItemStatus count={tasksDone.length} text="Tasks Already Done! " />
           </div>
 
           <div className="row">
@@ -168,7 +168,7 @@ class App extends React.Component {
             <div className="col-12 col-lg-6">
               <div className="col-12">
                 <div className="row" >
-                  <h5> Tasks Already Done!!</h5>
+                  <h5> Tasks Already Done!</h5>
                 </div>
                 {tasksDone.map(item => {
                   return <TaskComplete key={item.id}
