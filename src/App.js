@@ -129,8 +129,9 @@ class App extends React.Component {
     return (
       <div>
         <br />
+        
+        <div className="container ">
         <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
-        <div className="container">
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
@@ -161,7 +162,9 @@ class App extends React.Component {
                     editTaskFunc={this.editTask} />
                 })}
               </div>
+              <br /> 
             </div>
+            
             <div className="col-12 col-lg-6">
               <div className="col-12">
                 <div className="row" >

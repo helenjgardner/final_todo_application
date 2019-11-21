@@ -5,7 +5,8 @@
 }
 .toDo {
   background-color: rgb(247, 242, 242); 
-  border: 1px solid rgb(207, 198, 198);
+  /* border: 1px solid rgb(207, 198, 198); */
+  border: 1px solid rgb(159, 148, 199);
   padding-top: 5px;
   padding-bottom: 5px;
 }
