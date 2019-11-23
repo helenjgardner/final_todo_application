@@ -6,6 +6,9 @@ import AddItem from "./AddItem";
 import TaskToDo from "./TaskToDo";
 import TaskComplete from "./TaskComplete";
 import moment from 'moment';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 
 class App extends React.Component {
 
@@ -41,8 +44,18 @@ class App extends React.Component {
   // called when user selects 'add task' - user then updates date due.  Defaulted to a week
   addTask = (taskText) => {
     if (taskText === "") {
-      alert('Task cannot be blank - please try again');
-      return;
+      confirmAlert({
+        message: 'Task cannot be blank - please try again',
+        buttons: [
+          {
+            label: 'Ok',
+            onClick: () => {}
+          }
+        ],
+        closeOnEscape: true,
+        closeOnClickOutside: true,
+     })
+    return;
     }
     const newTask = {
       text: taskText,
@@ -106,7 +119,17 @@ class App extends React.Component {
   // called to edit an incomplete task - user cannot edit a done task
   editTask = (id, newText) => {
     if (newText === "") {
-      alert('Task cannot be blank - please try again');
+      confirmAlert({
+        message: 'Task cannot be blank - please try again',
+        buttons: [
+          {
+            label: 'Ok',
+            onClick: () => {}
+          }
+        ],
+        closeOnEscape: true,
+        closeOnClickOutside: true,
+     })
       return;
     }
     const tasksCopy = this.state.tasks.slice();

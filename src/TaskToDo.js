@@ -8,15 +8,31 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
 } from '@material-ui/pickers';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 
 
 class TaskToDo extends React.Component {
-    handleClickDel = (ev) => {
-        if (window.confirm('Are you sure you want to delete?')) {
-            this.props.deleteTaskFunc(this.props.id);
-        }
-    }
+    handleClickDel = () => {
+        confirmAlert({
+          title: 'Delete Task',
+          message: 'Are you sure you want to delete this task "' + this.props.task +'"?',
+          buttons: [
+            {
+              label: 'Cancel',
+              onClick: () => {}
+            },
+            {
+              label: 'Ok',
+              onClick: () => this.props.deleteTaskFunc(this.props.id)
+            }
+          ],
+          closeOnEscape: true,
+          closeOnClickOutside: true,
+    
+        })
+      };
 
     handleClickDone = () => {
         // done = true since task was not done and now is
