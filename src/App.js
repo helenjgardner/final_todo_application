@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import uuid from "uuid/v4";
+// import uuid from "uuid/v4";
 import TotalItemStatus from './TotalItemStatus';
 import AddItem from "./AddItem";
 import TaskToDo from "./TaskToDo";
@@ -8,37 +8,32 @@ import TaskComplete from "./TaskComplete";
 import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import axios from 'axios';
 
 
 class App extends React.Component {
 
   state = {
     tasks: [
-      {
-        text: "clean driveway", completed: false,
-        dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
-      },
-      {
-        text: "paint landing", completed: false,
-        dateDue: moment().add(2, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
-      },
-      {
-        text: "mend trousers", completed: false,
-        dateDue: moment().add(3, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
-      },
-      {
-        text: "change dishwasher salt", completed: true,
-        dateDue: "", dateDone: "2019-10-12", id: uuid()
-      },
-      {
-        text: "buy crayons", completed: true,
-        dateDue: "", dateDone: "2019-09-01", id: uuid()
-      },
-      {
-        text: "a really, really, long task to display", completed: false,
-        dateDue: moment().add(8, 'days').format("YYYY-MM-DD"), dateDone: "2019-09-01", id: uuid()
-      }
+      // {
+      //   text: "clean driveway", completed: false,
+      //   dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
+      // }
     ]
+  }
+
+  componentDidMount(){
+    // make asynch request to get tasks 
+    axios.get('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks')
+  .then( (response) => {
+    // handle success
+    // console.log(response.data.tasks);
+    this.setState({tasks: response.data.tasks})
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
   }
 
   // called when user selects 'add task' - user then updates date due.  Defaulted to a week
@@ -57,19 +52,28 @@ class App extends React.Component {
      })
     return;
     }
+   
     const newTask = {
       text: taskText,
       completed: false,
       dateDue: moment().add(7, 'days').format("YYYY-MM-DD"),
       dateDone: "",
-      id: uuid()
+      id: ""
     };
 
-    const tasksCopy = this.state.tasks.slice();
-    tasksCopy.push(newTask);
-    this.setState({
-      tasks: tasksCopy
+    axios.post('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks', newTask) 
+    .then( (response) =>{
+      console.log(response.data.taskID);
+      newTask.id=response.data.taskID;
+      const tasksCopy = this.state.tasks.slice();
+      tasksCopy.push(newTask);
+      this.setState({
+        tasks: tasksCopy
+      })
     })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   // called to delete task whether task is done or not
