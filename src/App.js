@@ -78,12 +78,18 @@ class App extends React.Component {
 
   // called to delete task whether task is done or not
   deleteTask = (id) => {
-    const tasksCopy = this.state.tasks.filter(item => {
-      return item.id !== id;
-    });
-    this.setState({
-      tasks: tasksCopy
+    axios.delete('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id) 
+    .then( (response) =>{
+      const tasksCopy = this.state.tasks.filter(item => {
+        return item.id !== id;
+      });
+      this.setState({
+        tasks: tasksCopy
+      })
     })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   // called to mark as task as done or a complete task as not done

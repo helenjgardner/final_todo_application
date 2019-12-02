@@ -16,7 +16,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 class TaskToDo extends React.Component {
     handleClickDel = () => {
         confirmAlert({
-          title: 'Delete Task',
+          title: 'Delete',
           message: 'Are you sure you want to delete this task "' + this.props.task +'"?',
           buttons: [
             {
