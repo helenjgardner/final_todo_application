@@ -150,13 +150,20 @@ class App extends React.Component {
       })
       return;
     }
-    const tasksCopy = this.state.tasks.slice();
-    tasksCopy.forEach(item => {
-      if (item.id === id) { item.text = newText };
-    })
-    this.setState({
-      tasks: tasksCopy
-    })
+    let indTask = this.state.tasks.filter(item => item.id === id);
+    indTask[0].text = newText;
+    let restTasks = this.state.tasks.filter(item => item.id !== id);
+    restTasks.push(indTask[0]);
+
+    axios.put('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id, indTask[0])
+      .then((response) => {
+        this.setState({
+          tasks: restTasks
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
