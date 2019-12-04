@@ -14,12 +14,7 @@ import axios from 'axios';
 class App extends React.Component {
 
   state = {
-    tasks: [
-      // {
-      //   text: "clean driveway", completed: false,
-      //   dateDue: moment().add(7, 'days').format("YYYY-MM-DD"), dateDone: "", id: uuid()
-      // }
-    ]
+    tasks: []
   }
 
   componentDidMount() {
@@ -96,24 +91,27 @@ class App extends React.Component {
   // called to mark as task as done or a complete task as not done
   toggleTaskStatus = (id, result) => {
     // if result is true then dealing with task changing from 'not done' to 'done'
-    const tasksCopy = this.state.tasks.slice();
-    tasksCopy.forEach(item => {
-      if (item.id === id) {
-        // completed can be set to result
-        item.completed = result;
-        // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
-        if (result) {
-          item.dateDone = moment();
-        }
-        else {
-          item.dateDone = '';
-          item.dateDue = moment().add(7, 'days').format("YYYY-MM-DD");
-        };
-      }
-    })
-    this.setState({
-      tasks: tasksCopy
-    })
+    let indTask = this.state.tasks.filter(item => item.id === id);
+    // completed can be set to result
+    indTask[0].completed = result;
+    // if true then dateDone is set to today, otherwise it's undone and dateDone is blank
+    if (result) indTask[0].dateDone = moment();
+    else {
+      indTask[0].dateDone = '';
+      indTask[0].dateDue = moment().add(7, 'days').format("YYYY-MM-DD");
+    };
+    let restTasks = this.state.tasks.filter(item => item.id !== id);
+    restTasks.push(indTask[0]);
+
+    axios.put('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id, indTask[0])
+      .then((response) => {
+        this.setState({
+          tasks: restTasks
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // called to set due date
