@@ -22,18 +22,18 @@ class App extends React.Component {
     ]
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // make asynch request to get tasks 
     axios.get('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks')
-  .then( (response) => {
-    // handle success
-    // console.log(response.data.tasks);
-    this.setState({tasks: response.data.tasks})
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
+      .then((response) => {
+        // handle success
+        // console.log(response.data.tasks);
+        this.setState({ tasks: response.data.tasks })
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   // called when user selects 'add task' - user then updates date due.  Defaulted to a week
@@ -44,52 +44,53 @@ class App extends React.Component {
         buttons: [
           {
             label: 'Ok',
-            onClick: () => {}
+            onClick: () => { }
           }
         ],
         closeOnEscape: true,
         closeOnClickOutside: true,
-     })
-    return;
+      })
+      return;
     }
-   
+
     const newTask = {
       text: taskText,
       completed: false,
       dateDue: moment().add(7, 'days').format("YYYY-MM-DD"),
       dateDone: "",
-      id: ""
+      id: "",
+      userid: "helen.gardner"
     };
 
-    axios.post('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks', newTask) 
-    .then( (response) =>{
-      console.log(response.data.taskID);
-      newTask.id=response.data.taskID;
-      const tasksCopy = this.state.tasks.slice();
-      tasksCopy.push(newTask);
-      this.setState({
-        tasks: tasksCopy
+    axios.post('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks', newTask)
+      .then((response) => {
+        newTask.id = response.data.taskID;
+        const tasksCopy = this.state.tasks.slice();
+        tasksCopy.push(newTask);
+        this.setState({
+          tasks: tasksCopy
+        })
       })
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // called to delete task whether task is done or not
   deleteTask = (id) => {
-    axios.delete('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id) 
-    .then( (response) =>{
-      const tasksCopy = this.state.tasks.filter(item => {
-        return item.id !== id;
-      });
-      this.setState({
-        tasks: tasksCopy
+    axios.delete('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id)
+
+      .then((response) => {
+        const tasksCopy = this.state.tasks.filter(item => {
+          return item.id !== id;
+        });
+        this.setState({
+          tasks: tasksCopy
+        })
       })
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // called to mark as task as done or a complete task as not done
@@ -117,13 +118,20 @@ class App extends React.Component {
 
   // called to set due date
   setDateDue = (id, date) => {
-    const tasksCopy = this.state.tasks.slice();
-    tasksCopy.forEach(item => {
-      if (item.id === id) { item.dateDue = date };
-    })
-    this.setState({
-      tasks: tasksCopy
-    })
+    let indTask = this.state.tasks.filter(item => item.id === id);
+    indTask[0].dateDue = date;
+    let restTasks = this.state.tasks.filter(item => item.id !== id);
+    restTasks.push(indTask[0]);
+
+    axios.put('https://ofe1t56so4.execute-api.eu-west-2.amazonaws.com/dev/tasks/' + id, indTask[0])
+      .then((response) => {
+        this.setState({
+          tasks: restTasks
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   // called to edit an incomplete task - user cannot edit a done task
@@ -134,12 +142,12 @@ class App extends React.Component {
         buttons: [
           {
             label: 'Ok',
-            onClick: () => {}
+            onClick: () => { }
           }
         ],
         closeOnEscape: true,
         closeOnClickOutside: true,
-     })
+      })
       return;
     }
     const tasksCopy = this.state.tasks.slice();
@@ -162,9 +170,9 @@ class App extends React.Component {
     return (
       <div>
         <br />
-        
+
         <div className="container ">
-        <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
+          <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
           <div className="row" id="totalItem">
             <hr />
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
@@ -195,9 +203,9 @@ class App extends React.Component {
                     editTaskFunc={this.editTask} />
                 })}
               </div>
-              <br /> 
+              <br />
             </div>
-            
+
             <div className="col-12 col-lg-6">
               <div className="col-12">
                 <div className="row" >
