@@ -177,16 +177,20 @@ class App extends React.Component {
         <br />
 
         <div className="container ">
-          <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
-          <div className="row" id="totalItem">
-            <hr />
+          <div className="row rounded title">
+            <div className="col text-align-center">
+              <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
+          </div>
+          </div>
+          <div className="row rounded subtitle" id="totalItem">
+            {/* <hr /> */}
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
             <TotalItemStatus count={tasksDone.length} text="Tasks Already Done! " />
           </div>
 
           <div className="row">
             <div className="col-12">
-              <hr />
+              {/* <hr /> */}
               <AddItem addTaskFunc={this.addTask} />
             </div>
           </div>
