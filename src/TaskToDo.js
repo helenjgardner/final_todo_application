@@ -69,7 +69,7 @@ class TaskToDo extends React.Component {
                 <div className="col-8 col-sm-5 col-md-5 align-bottom">
                     {this.props.task}
                 </div>
-                <div className="col-12 col-sm-4 col-md-4 align-text-top" >
+                <div className="col-7 col-sm-4 col-md-4 align-text-bottom" >
                     
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container>

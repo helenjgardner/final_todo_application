@@ -1,6 +1,6 @@
 # Todo Application - Frontend
 
-This is the front end of a Todo Application, built throughout the [Tech Returners](https://techreturners.com) Your Journey Into Tech course. It integrates with a backend, available [here](https://github.com/your-backend-repo).
+This is the front end of a Todo Application, built throughout the [Tech Returners](https://techreturners.com) Your Journey Into Tech course. It integrates with a backend, available [here](https://github.com/helenjgardner/final_todo_application_backend).
 
 The hosted version of the application is available here: [https://helenjgardner.github.io/final_todo_application/](https://helenjgardner.github.io/final_todo_application/).
 
