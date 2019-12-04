@@ -23,10 +23,11 @@ class AddItem extends React.Component {
         return (
             <div className="row">
                 <div className="col-12 col-sm-9">
-                    <div className="mt-3 mb-3">
+                    <div className="mt-3">
                         <input
                             id="addItemInput"
                             type="text"
+                            size="85"
                             maxLength="85"
                             className="form-control"
                             placeholder="New task description (max length 85)"
