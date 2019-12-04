@@ -193,7 +193,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col-12 col-lg-6" >
               <div className="col-12">
-                <div className="row" >
+                <div className="row rounded title" >
                   <h5> Tasks Still to Complete </h5>
                 </div>
                 {tasksToDo.map(item => {
@@ -213,7 +213,7 @@ class App extends React.Component {
 
             <div className="col-12 col-lg-6">
               <div className="col-12">
-                <div className="row" >
+                <div className="row rounded title" >
                   <h5> Tasks Already Done!</h5>
                 </div>
                 {tasksDone.map(item => {
