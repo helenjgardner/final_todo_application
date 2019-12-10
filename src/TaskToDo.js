@@ -16,23 +16,23 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 class TaskToDo extends React.Component {
     handleClickDel = () => {
         confirmAlert({
-          title: 'Delete',
-          message: 'Are you sure you want to delete this task "' + this.props.task +'"?',
-          buttons: [
-            {
-              label: 'Cancel',
-              onClick: () => {}
-            },
-            {
-              label: 'Ok',
-              onClick: () => this.props.deleteTaskFunc(this.props.id)
-            }
-          ],
-          closeOnEscape: true,
-          closeOnClickOutside: true,
-    
+            title: 'Delete',
+            message: 'Are you sure you want to delete this task "' + this.props.task + '"?',
+            buttons: [
+                {
+                    label: 'Cancel',
+                    onClick: () => { }
+                },
+                {
+                    label: 'Ok',
+                    onClick: () => this.props.deleteTaskFunc(this.props.id)
+                }
+            ],
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+
         })
-      };
+    };
 
     handleClickDone = () => {
         // done = true since task was not done and now is
@@ -50,27 +50,26 @@ class TaskToDo extends React.Component {
 
     render() {
         return (
-            <div className="row toDo align-items-center rounded">
-                <div className="col-4 col-sm-3 col-md-3 align-middle">
+            <div className="row taskList align-items-center rounded">
+                <div className="col-4 col-sm-3 col-md-3 align-middle temp">
                     <i className="fas fa-trash-alt pad"
                         title="Delete Task"
                         onClick={this.handleClickDel}>
                     </i>
-                    <i className="fas fa-clipboard-check green pad" 
+                    <i className="fas fa-clipboard-check green pad"
                         title="Mark as Done"
                         onClick={this.handleClickDone} >
                     </i>
-                    <i className="fas fa-pencil-alt blue"
+                    <i className="fas fa-pencil-alt blue remMarg"
                         title="Edit"
                         onClick={this.handleClickEdit} >
                     </i>
                 </div>
-                
-                <div className="col-8 col-sm-5 col-md-5 align-bottom">
+
+                <div className="col-8 col-sm-4 col-md-4 col-xl-5 remMarg">
                     {this.props.task}
                 </div>
-                <div className="col-7 col-sm-4 col-md-4 align-text-bottom" >
-                    
+                <div className="col-7 col-sm-5 col-md-5 col-xl-4 align-text-bottom remMarg" >
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container>
                             <KeyboardDatePicker

@@ -10,7 +10,6 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import axios from 'axios';
 
-
 class App extends React.Component {
 
   state = {
@@ -178,19 +177,15 @@ class App extends React.Component {
 
         <div className="container ">
           <div className="row rounded title">
-            <div className="col text-align-center">
-              <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
+            <h4> Today's ({moment().format("ddd Do MMM")}) List </h4>
           </div>
-          </div>
-          <div className="row rounded subtitle" id="totalItem">
-            {/* <hr /> */}
+          <div className="row rounded subtitle totalItem">
             <TotalItemStatus count={tasksToDo.length} text="Tasks Still to Complete" />
             <TotalItemStatus count={tasksDone.length} text="Tasks Already Done! " />
           </div>
 
           <div className="row">
             <div className="col-12">
-              {/* <hr /> */}
               <AddItem addTaskFunc={this.addTask} />
             </div>
           </div>
